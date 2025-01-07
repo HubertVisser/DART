@@ -51,7 +51,7 @@ Where $x,y,\eta,v$ are respectively the x-y position,orientation and longitudina
 To do so we broke down the kinematic bicycle model into its elemental components and identified them one by one. This is much simpler that attempting to identify them all at once from a single dataset. Each step that we took has its corresponding numbered python script:
 
 1. Identify the friction $F_f(v)$
-2. Identify the motor cahracteristic curve $F_m(\tau,v)$
+2. Identify the motor characteristic curve $F_m(\tau,v)$
 3. Map the steering input $s$ to steering angle $\delta$ [rad]
 4. Identify the steering delay
 
