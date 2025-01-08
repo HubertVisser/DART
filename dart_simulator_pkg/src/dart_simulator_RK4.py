@@ -4,7 +4,7 @@
 import sys
 import rospy
 from std_msgs.msg import String, Float32, Float32MultiArray
-from geometry_msgs.msg import PoseStamped, PoseWithCovarianceStamped
+from geometry_msgs.msg import PoseStamped
 import numpy as np
 from scipy import integrate
 import tf_conversions
@@ -291,15 +291,15 @@ class Forward_intergrate_vehicle:
         vicon_msg = PoseStamped()
         vicon_msg.header.stamp = rospy.Time.now()
         vicon_msg.header.frame_id = 'map'
-        vicon_msg.pose.pose.position.x = self.state[0] 
-        vicon_msg.pose.pose.position.y = self.state[1] 
-        vicon_msg.pose.pose.position.z = self.state[3]
+        vicon_msg.pose.position.x = self.state[0] 
+        vicon_msg.pose.position.y = self.state[1] 
+        vicon_msg.pose.position.z = self.state[3]
         quaternion = tf_conversions.transformations.quaternion_from_euler(0.0, 0.0, self.state[2])
         #type(pose) = geometry_msgs.msg.Pose
-        vicon_msg.pose.pose.orientation.x = quaternion[0]
-        vicon_msg.pose.pose.orientation.y = quaternion[1]
-        vicon_msg.pose.pose.orientation.z = quaternion[2]
-        vicon_msg.pose.pose.orientation.w = quaternion[3]
+        vicon_msg.pose.orientation.x = quaternion[0]
+        vicon_msg.pose.orientation.y = quaternion[1]
+        vicon_msg.pose.orientation.z = quaternion[2]
+        vicon_msg.pose.orientation.w = quaternion[3]
         self.pub_motion_capture_state.publish(vicon_msg)
 
         # simulate on-board sensor data
@@ -319,9 +319,9 @@ class Forward_intergrate_vehicle:
         #publish rviz vehicle visualization
         rviz_message = PoseStamped()
         # to plot centre of arrow as centre of vehicle shift the centre back by l_r
-        rviz_message.pose.position.x = vicon_msg.pose.pose.position.x - l_r/2 * np.cos(self.state[2])
-        rviz_message.pose.position.y = vicon_msg.pose.pose.position.y - l_r/2 * np.sin(self.state[2])
-        rviz_message.pose.orientation = vicon_msg.pose.pose.orientation
+        rviz_message.pose.position.x = vicon_msg.pose.position.x - l_r/2 * np.cos(self.state[2])
+        rviz_message.pose.position.y = vicon_msg.pose.position.y - l_r/2 * np.sin(self.state[2])
+        rviz_message.pose.orientation = vicon_msg.pose.orientation
 
         # frame data is necessary for rviz
         rviz_message.header.frame_id = 'map'
