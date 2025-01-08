@@ -222,7 +222,7 @@ class Forward_intergrate_vehicle(model_functions):
         rospy.Subscriber('steering_' + str(car_number), Float32, self.callback_steering)
         rospy.Subscriber('throttle_' + str(car_number), Float32, self.callback_throttle)
         rospy.Subscriber('safety_value', Float32, self.callback_safety)
-        self.pub_motion_capture_state = rospy.Publisher('vicon/jetracer' + str(car_number), PoseWithCovarianceStamped, queue_size=10)
+        self.pub_motion_capture_state = rospy.Publisher('vicon/jetracer' + str(car_number), PoseStamped, queue_size=10)
         self.pub_sens_input = rospy.Publisher("sensors_and_input_" + str(car_number), Float32MultiArray, queue_size=1)
         # for rviz
         self.pub_rviz_vehicle_visualization = rospy.Publisher('rviz_data_' + str(car_number), PoseStamped, queue_size=10)
@@ -301,12 +301,12 @@ class Forward_intergrate_vehicle(model_functions):
 
 
         # simulate vicon motion capture system output
-        vicon_msg = PoseWithCovarianceStamped()
+        vicon_msg = PoseStamped()
         vicon_msg.header.stamp = rospy.Time.now()
         vicon_msg.header.frame_id = 'map'
         vicon_msg.pose.pose.position.x = self.state[0] 
         vicon_msg.pose.pose.position.y = self.state[1] 
-        vicon_msg.pose.pose.position.z = 0.0
+        vicon_msg.pose.pose.position.z = self.state[3]
         quaternion = tf_conversions.transformations.quaternion_from_euler(0.0, 0.0, self.state[2])
         #type(pose) = geometry_msgs.msg.Pose
         vicon_msg.pose.pose.orientation.x = quaternion[0]
