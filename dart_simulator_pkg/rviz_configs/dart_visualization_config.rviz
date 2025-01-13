@@ -222,7 +222,7 @@ Visualization Manager:
     - Alpha: 1
       Axes Length: 0.10000000149011612
       Axes Radius: 0.009999999776482582
-      Class: rviz/PoseWithCovariance
+      Class: rviz/Pose
       Color: 239; 41; 41
       Covariance:
         Orientation:
