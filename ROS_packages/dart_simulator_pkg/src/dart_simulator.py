@@ -202,7 +202,7 @@ class Forward_intergrate_vehicle(model_functions):
         print("setting ros topics and node")
 
         # set up variables
-        self.safety_value = 0
+        self.safety_value = 1
         self.steering = 0
         self.throttle = 0
         self.state = initial_state
