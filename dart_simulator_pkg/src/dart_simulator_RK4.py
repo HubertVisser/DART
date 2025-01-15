@@ -51,6 +51,7 @@ def friction(v):
     c =  0.289848655462265
     Ff = - a * np.tanh(b  * v) - v * c
     return Ff
+
 def slip_angles(vx,vy,w,steering_angle):
     # evaluate slip angles
     Vy_wheel_r = vy - l_r * w # lateral velocity of the rear wheel
