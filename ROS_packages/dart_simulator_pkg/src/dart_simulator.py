@@ -14,7 +14,7 @@ from tf.transformations import quaternion_from_euler
 
 
 # import the model functions from previously installed python package
-from DART_dynamic_models.dart_dynamic_models import model_functions,load_SVGPModel_actuator_dynamics_analytic
+from DART_dynamic_models.dart_dynamic_models import model_functions
 
 
 
@@ -109,19 +109,19 @@ def dynamic_bicycle(t,z):  # RK4 wants a function that takes as input time and s
 
 
 
-#get current folder path
-#import os
-import importlib.resources
-#folder_path = os.path.dirname(os.path.realpath(__file__))
+# #get current folder path
+# #import os
+# import importlib.resources
+# #folder_path = os.path.dirname(os.path.realpath(__file__))
 
-with importlib.resources.path('DART_dynamic_models', 'SVGP_saved_parameters') as data_path:
-    folder_path = str(data_path)
+# with importlib.resources.path('DART_dynamic_models', 'SVGP_saved_parameters') as data_path:
+#     folder_path = str(data_path)
 
 
-evalaute_cov_tag = False # only using the mean for now
-model_vx,model_vy,model_w = load_SVGPModel_actuator_dynamics_analytic(folder_path,evalaute_cov_tag)
+# evalaute_cov_tag = False # only using the mean for now
+# model_vx,model_vy,model_w = load_SVGPModel_actuator_dynamics_analytic(folder_path,evalaute_cov_tag)
 
-def SVGP(t,z):  # RK4 wants a function that takes as input time and state
+#def SVGP(t,z):  # RK4 wants a function that takes as input time and state
     th, st, x, y, yaw, vx, vy, w = unpack_state(z)
 
     #['vx body', 'vy body', 'w', 'throttle filtered' ,'steering filtered','throttle','steering']
@@ -177,9 +177,9 @@ class Forward_intergrate_GUI_manager:
                     self.vehicles_list[i].vehicle_model = dynamic_bicycle
 
                 elif vehicle_model_choice == 3:
-                    print('vehicle model set to SVGP')
-                    self.vehicles_list[i].vehicle_model = SVGP
-
+                    # print('vehicle model set to SVGP')
+                    # self.vehicles_list[i].vehicle_model = SVGP
+                    pass
 
             reset_state_x = config['reset_state_x']
             reset_state_y = config['reset_state_y']
@@ -332,8 +332,8 @@ class Forward_intergrate_vehicle(model_functions):
         #publish rviz vehicle visualization
         rviz_message = PoseStamped()
         # to plot centre of arrow as centre of vehicle shift the centre back by l_r
-        rviz_message.pose.position.x = vicon_msg.pose.position.x - l_r/2 * np.cos(self.state[2])
-        rviz_message.pose.position.y = vicon_msg.pose.position.y - l_r/2 * np.sin(self.state[2])
+        rviz_message.pose.position.x = vicon_msg.pose.position.x - self.l_COM_self * np.cos(self.state[2])
+        rviz_message.pose.position.y = vicon_msg.pose.position.y - self.l_COM_self * np.sin(self.state[2])
         rviz_message.pose.orientation = vicon_msg.pose.orientation
 
         # frame data is necessary for rviz

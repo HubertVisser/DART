@@ -363,7 +363,7 @@ def get_data(folder_path):
 
 
 
-def merge_data_files_from_a_folder(folder_path):
+# def merge_data_files_from_a_folder(folder_path):
     #this method creates a single file from all .csv files in the specified folder
 
     # Output file name and path
