@@ -360,7 +360,7 @@ if __name__ == '__main__':
         
 
         #vehicle 1         #x y theta vx vy w
-        initial_state_1 = [0, 0, 0, 0.2, 0, 0]
+        initial_state_1 = [0, 0, 0, 0, 0, 0]
         car_number_1 = 1
         actuator_dynamics = False
         vehicle_1_integrator = Forward_intergrate_vehicle(car_number_1, vehicle_model, initial_state_1,
