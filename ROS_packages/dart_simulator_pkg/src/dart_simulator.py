@@ -139,15 +139,6 @@ def dynamic_bicycle(t,z):  # RK4 wants a function that takes as input time and s
     return xdot
 
 
-
-
-
-
-
-
-
-
-
 class Forward_intergrate_GUI_manager:
     def __init__(self, vehicles_list):
         #fory dynamic parameter change using rqt_reconfigure GUI
@@ -194,7 +185,6 @@ class Forward_intergrate_GUI_manager:
             return config
 
 
-
 class Forward_intergrate_vehicle(model_functions):
     def __init__(self, car_number, vehicle_model, initial_state, dt_int,actuator_dynamics):
         print("Starting vehicle integrator " + str(car_number))
@@ -216,8 +206,6 @@ class Forward_intergrate_vehicle(model_functions):
         # internal states for actuator dynamics
         self.throttle_state = 0.0
         self.steering_state = 0.0
-
-
         
         rospy.Subscriber('steering_' + str(car_number), Float32, self.callback_steering)
         rospy.Subscriber('throttle_' + str(car_number), Float32, self.callback_throttle)
@@ -342,15 +330,6 @@ class Forward_intergrate_vehicle(model_functions):
 
 
 
-
-
-
-
-
-
-
-
-
 if __name__ == '__main__':
     try:
         rospy.init_node('Vehicles_Integrator_node' , anonymous=True)
@@ -371,7 +350,7 @@ if __name__ == '__main__':
 
 
         #set up GUI manager
-        Forward_intergrate_GUI_manager_obj = Forward_intergrate_GUI_manager(vehicles_list)
+        # Forward_intergrate_GUI_manager_obj = Forward_intergrate_GUI_manager(vehicles_list)
 
         # forwards integrate
         #rate = rospy.Rate(1 / dt_int)
