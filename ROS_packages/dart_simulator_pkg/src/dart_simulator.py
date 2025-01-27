@@ -327,6 +327,7 @@ class Forward_intergrate_vehicle(model_functions):
         # frame data is necessary for rviz
         rviz_message.header.frame_id = 'map'
         self.pub_rviz_vehicle_visualization.publish(rviz_message)
+      
 
 
 
@@ -334,7 +335,7 @@ if __name__ == '__main__':
     try:
         rospy.init_node('Vehicles_Integrator_node' , anonymous=True)
 
-        dt_int = 0.01
+        dt_int = 0.1
         vehicle_model = kinematic_bicycle
         
 
@@ -361,6 +362,8 @@ if __name__ == '__main__':
                 # get time now
                 rostime_begin_loop = rospy.get_rostime()
                 vehicles_list[i].forward_integrate_1_timestep(rostime_begin_loop,dt_int)
+            
+
                 rostime_finished_loop = rospy.get_rostime()
                 #evalaute time needed to do the loop and print
                 time_for_loop = rostime_finished_loop - rostime_begin_loop
