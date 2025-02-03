@@ -346,6 +346,14 @@ if __name__ == '__main__':
         actuator_dynamics = False
         vehicle_1_integrator = Forward_intergrate_vehicle(car_number_1, vehicle_model, initial_state_1,
                                                            dt_int,actuator_dynamics)
+        
+        #vehicle 2         #x y theta vx vy w
+        initial_state_2 = [1.0, -5.0, 0, 0, 0, 0]
+        # initial_state_2 = [, 0, 0, 0, 0, 0]
+        car_number_2 = 1
+        actuator_dynamics = False
+        vehicle_2_integrator = Forward_intergrate_vehicle(car_number_2, vehicle_model, initial_state_2,
+                                                           dt_int,actuator_dynamics)
 
 
         vehicles_list = [vehicle_1_integrator]
