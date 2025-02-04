@@ -326,7 +326,7 @@ class Forward_intergrate_vehicle(model_functions):
 
         # frame data is necessary for rviz
         rviz_message.header.frame_id = 'map'
-        # self.pub_rviz_vehicle_visualization.publish(rviz_message)
+        self.pub_rviz_vehicle_visualization.publish(rviz_message)
       
 
 
