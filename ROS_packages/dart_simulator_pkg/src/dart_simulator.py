@@ -340,7 +340,7 @@ if __name__ == '__main__':
         
 
         #vehicle 1         #x y theta vx vy w
-        initial_state_1 = [-5., 0., 0, 0, 0, 0]
+        initial_state_1 = [-6., 0., 0, 0, 0, 0]
         # initial_state_1[0] += 5
         # initial_state_1[1] += 5
 
@@ -350,7 +350,7 @@ if __name__ == '__main__':
                                                            dt_int,actuator_dynamics)
         
         #vehicle 2         #x y theta vx vy w
-        initial_state_2 = [1., -4., 0.5 * np.pi, 0, 0, 0]
+        initial_state_2 = [-5., -2., 0, 0, 0, 0]
         # initial_state_2[0] += 5
         # initial_state_2[1] += 5
         car_number_2 = 2
